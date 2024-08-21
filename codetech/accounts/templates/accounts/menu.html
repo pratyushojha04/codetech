@@ -4,12 +4,24 @@
 
 {% block content %}
     <h2>Welcome to Codetech</h2>
+    <a href="{% url 'add_course' %}">Add a New Course</a>
+
+    
     <h3>Total Courses</h3>
     <ul>
-        <!-- Loop through courses here -->
+        {% for course in total_courses %}
+            <li>{{ course.title }} - ${{ course.price }}</li>
+        {% empty %}
+            <li>No courses available.</li>
+        {% endfor %}
     </ul>
+    
     <h3>My Courses</h3>
     <ul>
-        <!-- Loop through purchased courses here -->
+        {% for course in purchased_courses %}
+            <li>{{ course.title }} - ${{ course.price }}</li>
+        {% empty %}
+            <li>You haven't purchased any courses yet.</li>
+        {% endfor %}
     </ul>
 {% endblock %}

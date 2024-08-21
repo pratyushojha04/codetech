@@ -12,5 +12,8 @@ urlpatterns = [
     path('cart/', views.cart, name='cart'),
     path('profile/', views.profile, name='profile'),
     path('update_profile/', views.update_profile, name='update_profile'),
-    path('delete_account/', views.delete_account, name='delete_account'),  # Add delete_account URL  # Add delete_account URL to the accounts app URLs  # Add delete_account URL to the accounts app URLs  # Add delete_account
+    path('delete_account/', views.delete_account, name='delete_account'),    
+    path('add-course/', views.add_course, name='add_course'),
 ]
+
+

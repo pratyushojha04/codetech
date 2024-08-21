@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .forms import CourseForm
 
 def login_view(request):
     if request.method == 'POST':
@@ -104,3 +105,36 @@ def delete_account(request):
         return redirect('accounts/login')  # Redirect to login after successful deletion
     
     return render(request, 'accounts/delete_account.html')
+
+
+# accounts/views.py
+
+
+from .models import Course
+def menu(request):
+    total_courses = Course.objects.all()
+    purchased_courses = Course.objects.filter(users=request.user)
+
+    context = {
+        'total_courses': total_courses,
+        'purchased_courses': purchased_courses,
+    }
+    return render(request, 'accounts/menu.html', context)
+
+
+
+# accounts/views.py
+
+
+def add_course(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('menu')  # Redirect to the menu or another page after saving
+    else:
+        form = CourseForm()
+
+    return render(request, 'accounts/add_course.html', {'form': form})
+
+

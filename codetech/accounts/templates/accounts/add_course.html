@@ -1,0 +1,14 @@
+<!-- accounts/templates/accounts/add_course.html -->
+
+{% extends 'accounts/base.html' %}
+
+{% block title %}Add Course{% endblock %}
+
+{% block content %}
+    <h2>Add a New Course</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Course</button>
+    </form>
+{% endblock %}
