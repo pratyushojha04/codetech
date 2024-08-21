@@ -1,0 +1,25 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+<div class="cart-container">
+    <h1>Your Cart</h1>
+    <div class="cart-items">
+        <!-- Example of a cart item -->
+        <div class="cart-item">
+            <div class="item-details">
+                <h2>Course Title</h2>
+                <p>Instructor: John Doe</p>
+                <p>Price: $99.00</p>
+                <button class="remove-item">Remove</button>
+            </div>
+        </div>
+
+        <!-- Repeat for more items -->
+
+    </div>
+    <div class="cart-total">
+        <h2>Total: $99.00</h2>
+        <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+</div>
+{% endblock %}
