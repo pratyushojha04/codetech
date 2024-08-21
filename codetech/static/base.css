@@ -115,6 +115,7 @@ button, .btn{
     border-radius: 8px; /* Rounded corners */
 }
 
-#add-courses:hover {
-    background-color: #45a049; /* Darker green on hover */
+
+button:hover, .btn:hover {
+    background-color: #d07711; /* Darker green on hover */
 }
