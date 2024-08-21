@@ -14,7 +14,13 @@
             <h1>Codetech</h1>
             <nav>
                 <ul>
-                    <h4>home courses profile logout </h4>
+                    <li><a href="{% url 'menu' %}">Home</a></li>
+                    
+                    <li><a href="{% url 'profile' %}">profile</a></li>
+                    <li><a href="{% url 'cart' %}">cart</a></li>
+                    
+                    <li><a href="{% url 'login' %}">Logout</a></li>
+                    
                     
                 </ul>
             </nav>
@@ -31,10 +37,6 @@
     </main>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Codetech. All rights reserved.</p>
-        </div>
-    </footer>
+    
 </body>
 </html>

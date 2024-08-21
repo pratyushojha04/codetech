@@ -50,3 +50,57 @@ def menu(request):
         'purchased_courses': purchased_courses
     }
     return render(request, 'accounts/menu.html', context)
+
+@login_required
+def logout(request):
+    return redirect('accounts/login')
+
+@login_required
+def cart(request):
+    # Example data
+    cart_items = [('Course 1', 2), ('Course 2', 1)]
+    
+    context = {
+        'cart_items': cart_items
+    }
+    return render(request, 'accounts/cart.html', context)
+
+
+@login_required
+def profile(request):
+    # Example data
+    user_details = {
+        'username': 'john_doe',
+        'email': 'john.doe@example.com',
+        'address': '123 Main St'
+    }
+    
+    context = {
+        'user_details': user_details
+    }
+    return render(request, 'accounts/profile.html', context)
+
+@login_required
+def update_profile(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        address = request.POST['address']
+        
+        User.objects.filter(username=request.user.username).update(username=username, email=email)
+        
+        # Update user details in the database
+        messages.success(request, 'Profile updated successfully!')
+    
+    return redirect('profile')
+
+@login_required
+def delete_account(request):
+    if request.method == 'POST':
+        User.objects.filter(username=request.user.username).delete()
+        
+        # Delete user from the database
+        messages.success(request, 'Account deleted successfully!')
+        return redirect('accounts/login')  # Redirect to login after successful deletion
+    
+    return render(request, 'accounts/delete_account.html')
