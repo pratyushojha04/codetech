@@ -4,9 +4,13 @@
 
 {% block content %}
     <h2>Welcome to Codetech</h2>
-    <button id="add-courses" type="button" onclick="window.location.href='{% url 'add_course' %}';">
+
+    <button id="add-courses" type="button" onclick=" window.location.href=' {% url 'add_course' %} ';">
         Add a New Course
     </button>
+    
+    
+    
     <h3>Total Courses</h3>
     <ul>
         {% for course in total_courses %}
