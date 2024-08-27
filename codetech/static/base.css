@@ -1,3 +1,9 @@
+/* static/css/styles.css
+
+
+
+
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -103,19 +109,19 @@ button,.btn:hover {
 
 button, .btn{
     background-color: #4CAF50; /* Green background */
-    border: none; /* Remove border */
-    color: white; /* White text */
-    padding: 10px 20px; /* Some padding */
-    text-align: center; /* Centered text */
-    text-decoration: none; /* Remove underline */
-    display: inline-block; /* Inline-block element */
-    font-size: 16px; /* Set font size */
-    margin: 4px 2px; /* Some margin */
-    cursor: pointer; /* Pointer/hand icon on hover */
-    border-radius: 8px; /* Rounded corners */
+    /* border: none; /* Remove border */
+    /*color: white; 
+    padding: 10px 20px; 
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block; 
+    font-size: 16px; 
+    margin: 4px 2px; 
+    cursor: pointer; 
+    border-radius: 8px; 
 }
 
 
 button:hover, .btn:hover {
-    background-color: #d07711; /* Darker green on hover */
-}
+    background-color: #d07711; 
+}  */
