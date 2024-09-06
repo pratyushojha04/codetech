@@ -52,7 +52,7 @@ const Home = () => {
       )}
         <section className="flex justify-between items-center py-4 px-6">
           {/* Logo */}
-          <Link to="/" className="text-4xl text-gray-900 font-bold">LearnX</Link>
+                    <Link to="/" className="text-4xl text-gray-900 font-bold">LearnX</Link>
 
           {/* Search Form */}
           <form action="search.html" method="post" className="flex items-center bg-gray-200 rounded-lg p-3 w-1/2">
