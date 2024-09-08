@@ -25,11 +25,11 @@ const Home = () => {
           </div>
 
           <nav className="mt-6 space-y-4">
-            <Link to="home.html" className="flex items-center px-6 py-3 hover:bg-gray-100">
+            <Link to="/home" className="flex items-center px-6 py-3 hover:bg-gray-100">
               <FaHome className="mr-3 text-green-600" />
               <span>Home</span>
             </Link>
-            <Link to="about.html" className="flex items-center px-6 py-3 hover:bg-gray-100">
+            <Link to="/about" className="flex items-center px-6 py-3 hover:bg-gray-100">
               <FaQuestion className="mr-3 text-green-600" />
               <span>About</span>
             </Link>
@@ -41,7 +41,7 @@ const Home = () => {
               <FaChalkboardTeacher className="mr-3 text-green-600" />
               <span>Teachers</span>
             </Link>
-            <Link to="contact.html" className="flex items-center px-6 py-3 hover:bg-gray-100">
+            <Link to="/contact" className="flex items-center px-6 py-3 hover:bg-gray-100">
               <FaHeadset className="mr-3 text-green-600" />
               <span>Contact Us</span>
             </Link>
