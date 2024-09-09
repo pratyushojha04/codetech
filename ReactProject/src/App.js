@@ -8,6 +8,7 @@ import Register from './Components/register';
 import About from './Components/about';
 import Contact from './Components/contact';
 import Courses from './Components/courses';
+import Profile from './Components/profile';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route exact path="/about" element={<About/>} /> 
         <Route exact path="/Contact" element={<Contact/>} /> 
         <Route exact path="/Courses" element={<Courses/>} /> 
+        <Route exact path="/profile" element={<Profile/>} /> 
         </Routes>
     </BrowserRouter>
     </div>

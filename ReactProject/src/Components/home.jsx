@@ -19,7 +19,7 @@ const Home = () => {
             <img src="images/pic-1.jpg" alt="Profile" className="w-24 h-24 rounded-full mb-3 mx-auto" />
             <h3 className="text-xl text-gray-900 font-semibold">Pratyush Ji</h3>
             <p className="text-gray-500">Student</p>
-            <Link to="profile.html" className="block bg-green-600 text-white py-2 mt-3 rounded-lg w-3/4 mx-auto text-center">
+            <Link to="/profile" className="block bg-green-600 text-white py-2 mt-3 rounded-lg w-3/4 mx-auto text-center">
               View Profile
             </Link>
           </div>
@@ -91,7 +91,7 @@ const Home = () => {
               <img src="images/pic-1.jpg" alt="Profile" className="w-24 h-24 rounded-full mb-3" />
               <h3 className="text-xl text-gray-900 font-semibold">Pratyush Ji</h3>
               <p className="text-gray-500">Student</p>
-              <Link to="profile.html" className="block bg-green-600 text-white py-2 mt-3 rounded-lg">
+              <Link to="/profile" className="block bg-green-600 text-white py-2 mt-3 rounded-lg">
                 View Profile
               </Link>
               <div className="flex space-x-2 justify-center mt-2">
