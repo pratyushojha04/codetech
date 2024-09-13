@@ -47,19 +47,20 @@ const About = () => {
 
           {/* User Dropdown */}
           {userDropdownOpen && (
-            <div className="absolute top-16 right-8 bg-white rounded-lg shadow-lg p-4 text-center">
-              <img src={profilePic} alt="Profile" className="w-24 h-24 rounded-full mb-3" />
-              <h3 className="text-xl font-semibold text-gray-900">Pratyush Ji</h3>
-              <p className="text-gray-500">Student</p>
-              <Link to="/profile" className="block bg-green-600 text-white py-2 mt-3 rounded-lg">
-                View Profile
-              </Link>
-              <div className="flex space-x-2 justify-center mt-2">
-                <Link to="/login" className="bg-orange-500 text-white py-2 px-4 rounded-lg">Login</Link>
-                <Link to="/register" className="bg-orange-500 text-white py-2 px-4 rounded-lg">Register</Link>
-              </div>
-            </div>
-          )}
+  <div className="absolute top-16 right-8 bg-white rounded-lg shadow-lg p-4 text-center">
+    <img src={profilePic} alt="Profile" className="w-24 h-24 rounded-full mb-3 mx-auto" />
+    <h3 className="text-xl font-semibold text-gray-900">Pratyush Ji</h3>
+    <p className="text-gray-500">Student</p>
+    <Link to="/profile" className="block bg-green-600 text-white py-2 mt-3 rounded-lg mx-auto">
+      View Profile
+    </Link>
+    <div className="flex space-x-2 justify-center mt-2">
+      <Link to="/login" className="bg-orange-500 text-white py-2 px-4 rounded-lg">Login</Link>
+      <Link to="/register" className="bg-orange-500 text-white py-2 px-4 rounded-lg">Register</Link>
+    </div>
+  </div>
+)}
+
         </div>
       </header>
 

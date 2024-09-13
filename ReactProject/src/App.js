@@ -9,6 +9,10 @@ import About from './Components/about';
 import Contact from './Components/contact';
 import Courses from './Components/courses';
 import Profile from './Components/profile';
+import TeacherProfile from './Components/teacher_profile';
+import Teachers from './Components/teachers';
+import UpdateProfile from './Components/update';
+import WatchPage from './Components/watch-video';
 
 const App = () => {
   return (
@@ -22,6 +26,10 @@ const App = () => {
         <Route exact path="/Contact" element={<Contact/>} /> 
         <Route exact path="/Courses" element={<Courses/>} /> 
         <Route exact path="/profile" element={<Profile/>} /> 
+        <Route exact path="/teacherprofile" element={<TeacherProfile/>} /> 
+        <Route exact path="/teachers" element={<Teachers/>} /> 
+        <Route exact path="/updateprofile" element={<UpdateProfile/>} /> 
+        <Route exact path="/watchpage" element={<WatchPage/>} /> 
         </Routes>
     </BrowserRouter>
     </div>
