@@ -13,6 +13,7 @@ import TeacherProfile from './Components/teacher_profile';
 import Teachers from './Components/teachers';
 import UpdateProfile from './Components/update';
 import WatchPage from './Components/watch-video';
+import VideoPlaylist from './Components/playlist';
 
 const App = () => {
   return (
@@ -28,8 +29,9 @@ const App = () => {
         <Route exact path="/profile" element={<Profile/>} /> 
         <Route exact path="/teacherprofile" element={<TeacherProfile/>} /> 
         <Route exact path="/teachers" element={<Teachers/>} /> 
-        <Route exact path="/updateprofile" element={<UpdateProfile/>} /> 
-        <Route exact path="/watchpage" element={<WatchPage/>} /> 
+        <Route exact path="/updateprofile" element={<UpdateProfile/>} />
+        <Route exact path="/watchpage" element={<WatchPage/>} />
+        <Route exact path="/videoplaylist" element={<VideoPlaylist/>} /> 
         </Routes>
     </BrowserRouter>
     </div>

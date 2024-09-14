@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { FaChartBar, FaBars, FaSearch, FaUser, FaSun, FaMoon, FaTimes, FaHome, FaQuestion, FaGraduationCap, FaChalkboardTeacher, FaHeadset, FaCode, FaChartLine, FaPen, FaHtml5, FaCss3, FaJs } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import profilePic from '../images/pic-1.jpg';
@@ -15,78 +15,49 @@ import pic7 from '../images/thumb-9.png';
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+ // Persist theme in localStorage
+ useEffect(() => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    setIsDarkMode(savedTheme === 'dark');
+  } else {
+    // Default to system preference if no theme is saved
+    setIsDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
+  }
+}, []);
+
+useEffect(() => {
+  // Apply dark mode class to the body
+  document.body.classList.toggle('dark', isDarkMode);
+  localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+}, [isDarkMode]);
+
+const toggleTheme = () => {
+  setIsDarkMode(!isDarkMode);
+};
 
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'} transition-all duration-300`}>
-       {/* Sidebar Menu */}
-       {menuOpen && (
-        <div className={`fixed top-0 left-0 h-full w-80 ${isDarkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-900'} shadow-lg z-40`}>
-          <div className="flex justify-end p-4">
-            <FaTimes onClick={() => setMenuOpen(false)} className={`text-2xl ${isDarkMode ? 'text-gray-100' : 'text-gray-700'} cursor-pointer`} />
-          </div>
-          <div className="text-center py-6">
-            <img src={profilePic} className="w-24 h-24 rounded-full mb-3 mx-auto" alt="Profile" />
-            <h3 className="text-xl font-semibold">Pratyush Ji</h3>
-            <p className="text-gray-500">Student</p>
-            <Link to="/profile" className={`block ${isDarkMode ? 'bg-green-700 text-white' : 'bg-green-600 text-white'} py-2 mt-3 rounded-lg w-3/4 mx-auto text-center`}>
-              View Profile
-            </Link>
-          </div>
-          <nav className="mt-6 space-y-4">
-            <Link to="/" className={`flex items-center px-6 py-3 hover:${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-              <FaHome className={`mr-3 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
-              <span>Home</span>
-            </Link>
-            <Link to="/about" className={`flex items-center px-6 py-3 hover:${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-              <FaQuestion className={`mr-3 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
-              <span>About</span>
-            </Link>
-            <Link to="/courses" className={`flex items-center px-6 py-3 hover:${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-              <FaGraduationCap className={`mr-3 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
-              <span>Courses</span>
-            </Link>
-            <Link to="/teachers" className={`flex items-center px-6 py-3 hover:${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-              <FaChalkboardTeacher className={`mr-3 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
-              <span>Teachers</span>
-            </Link>
-            <Link to="/contact" className={`flex items-center px-6 py-3 hover:${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-              <FaHeadset className={`mr-3 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
-              <span>Contact Us</span>
-            </Link>
-          </nav>
-        </div>
-      )}
-      {/* Overlay */}
-      {menuOpen && (
-        <div
-          className="fixed inset-0 bg-black opacity-50 z-30"
-          onClick={() => setMenuOpen(false)}
-        />
-      )}
-
+       
       {/* Header Section */}
       <header className={`shadow sticky top-0 z-50 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
         <section className="flex justify-between items-center py-4 px-6">
           {/* Logo */}
           <Link to="/" className={`text-4xl font-bold ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>LearnX</Link>
 
-          {/* Search Form */}
-          <form action="search.html" method="post" className={`flex items-center bg-${isDarkMode ? 'gray-700' : 'gray-200'} rounded-lg p-3 w-1/2`}>
+           {/* Search Form */}
+          <form action="/search" method="post" className={`hidden md:flex items-center bg-${isDarkMode ? 'gray-700' : 'gray-200'} rounded-lg p-2 w-1/2  'block' : 'hidden'}`}>
             <input
               type="text"
               name="search_box"
               required
-              placeholder="courses..."
+              placeholder="Search courses..."
               maxLength="100"
-              className={`flex-grow bg-transparent text-${isDarkMode ? 'gray-100' : 'gray-800'} text-lg focus:outline-none`}
-            />
+              className={`flex-grow bg-transparent text-${isDarkMode ? 'gray-100' : 'gray-800'} text-lg focus:outline-none`}/>
             <button type="submit">
-              <FaSearch className={`text-${isDarkMode ? 'gray-100' : 'gray-700'} text-xl`} />
+              <FaSearch className={`text-${isDarkMode ? 'gray-100' : 'gray-800'} text-xl`} />
             </button>
           </form>
 
@@ -138,13 +109,57 @@ const Home = () => {
 )}
 
             </div>
-            <button onClick={toggleTheme} className={`text-2xl ${isDarkMode ? 'text-yellow-300' : 'text-gray-700'}`}>
+            <button onClick={toggleTheme} className={`text-2xl ${isDarkMode ? 'text-yellow-300' : ' text-blue-500'}`}>
               {isDarkMode ? <FaSun /> : <FaMoon />}
             </button>
           </div>
         </section>
       </header>
-
+      {/* Sidebar */}
+      {menuOpen && (
+        <>
+          <div className={`fixed top-0 left-0 h-full w-80 ${isDarkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-900'} shadow-lg z-40`}>
+          <div className="flex justify-end p-4">
+            <FaTimes onClick={() => setMenuOpen(false)} className={`text-2xl ${isDarkMode ? 'text-gray-100' : 'text-gray-700'} cursor-pointer`} />
+          </div>
+          <div className="text-center py-6">
+            <img src={profilePic} className="w-24 h-24 rounded-full mb-3 mx-auto" alt="Profile" />
+            <h3 className="text-xl font-semibold">Pratyush Ji</h3>
+            <p className="text-gray-500">Student</p>
+            <Link to="/profile" className={`block ${isDarkMode ? 'bg-green-700 text-white' : 'bg-green-600 text-white'} py-2 mt-3 rounded-lg w-3/4 mx-auto text-center`}>
+              View Profile
+            </Link>
+          </div>
+          <nav className="mt-6 space-y-4">
+            <Link to="/" className={`flex items-center px-6 py-3 hover:${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+              <FaHome className={`mr-3 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
+              <span>Home</span>
+            </Link>
+            <Link to="/about" className={`flex items-center px-6 py-3 hover:${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+              <FaQuestion className={`mr-3 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
+              <span>About</span>
+            </Link>
+            <Link to="/courses" className={`flex items-center px-6 py-3 hover:${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+              <FaGraduationCap className={`mr-3 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
+              <span>Courses</span>
+            </Link>
+            <Link to="/teachers" className={`flex items-center px-6 py-3 hover:${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+              <FaChalkboardTeacher className={`mr-3 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
+              <span>Teachers</span>
+            </Link>
+            <Link to="/contact" className={`flex items-center px-6 py-3 hover:${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+              <FaHeadset className={`mr-3 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
+              <span>Contact Us</span>
+            </Link>
+          </nav>
+        </div>
+          {/* Overlay */}
+          <div
+            className="fixed inset-0 bg-black opacity-50 z-30"
+            onClick={() => setMenuOpen(false)}
+          />
+        </>
+      )}
       {/* Main Content */}
       <section className="max-w-6xl mx-auto py-8">
         <h1 className="text-4xl font-bold mb-8 border-b pb-4">Quick Options</h1>
@@ -276,11 +291,9 @@ const Home = () => {
   
   {/* View All Courses */}
   <div className="text-center mt-8">
-    <Link to="/courses" className={`inline-block ${isDarkMode ? 'bg-green-600' : 'bg-green-600'} text-white py-2 px-6 rounded-lg`}>View All Courses</Link>
+    <Link to="/courses" className={`inline-block ${isDarkMode ? 'bg-yellow-600' : 'bg-yellow-600'} text-white py-2 px-6 rounded-lg`}>View All Courses</Link>
   </div>
 </section>
-
-
         {/* Become a Tutor Card */}
 <section className="mt-12">
   <h2 className="text-3xl font-bold mb-6 border-b pb-4">Become a Tutor</h2>
@@ -288,13 +301,13 @@ const Home = () => {
     <img src={pic7} alt="Become a Tutor" className="w-full h-32 object-cover rounded-lg mb-4" />
     <h4 className="text-xl font-semibold mb-4">Join Our Team</h4>
     <p className="text-gray-500 mb-4">Share your expertise and help others achieve their learning goals. Apply now to become a tutor.</p>
-    <Link to="/become-a-tutor" className={`inline-block ${isDarkMode ? 'bg-green-600' : 'bg-green-600'} text-white py-2 px-6 rounded-lg`}>Apply Now</Link>
+    <Link to="/teachers" className={`inline-block ${isDarkMode ? 'bg-yellow-600' : 'bg-yellow-600'} text-white py-2 px-6 rounded-lg`}>Apply Now</Link>
   </div>
 </section>
       </section>
       {/* Footer */}
 <footer className="footer bg-gray-800 text-white text-center p-4">
-  &copy; Copyright 2024 by <span className="text-blue-500">LearnX</span> | All rights reserved!
+  &copy; Copyright 2024 by <span className="text-green-500">LearnX</span> | All rights reserved!
 </footer>
     </div>
   );
