@@ -146,22 +146,18 @@ const forgotPassword = async (req, res) => {
             return res.status(404).json({ message: 'User not found.' });
         }
 
-         // Generate a reset token
-         const token = crypto.randomBytes(20).toString('hex');
-         user.resetPasswordToken = token;
-         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-         await user.save();
-
-
-
-
+        // Generate a reset token
+        const token = crypto.randomBytes(20).toString('hex');
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+        await user.save();
 
         // Create a transport for sending emails
         const transporter = nodemailer.createTransport({
             service: 'Gmail',
             auth: {
-                user: process.env.EMAIL_USER, // Use environment variable for email
-                pass: process.env.EMAIL_PASS,   // Use environment variable for password
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS,
             }
         });
 
@@ -172,14 +168,14 @@ const forgotPassword = async (req, res) => {
             subject: 'Password Reset',
             text: `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n` +
                   `Please click on the following link, or paste this into your browser to complete the process:\n\n` +
-                  `http://localhost:3000/reset-password?token=${user.resetToken}` // Ensure you have a reset token mechanism
+                  `http://localhost:3000/reset-password?token=${token}`
         };
 
         await transporter.sendMail(mailOptions);
         res.status(200).json({ message: 'Password reset link has been sent to your email.' });
     } catch (error) {
-        console.error('Error sending email:', error); // Log the error for debugging
-        res.status(500).json({ message: 'Server error.' });
+        console.error('Error in forgotPassword:', error); // Log the error for debugging
+        res.status(500).json({ message: 'Server error.', error: error.message });
     }
 };
 // Reset Password

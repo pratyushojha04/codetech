@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const courseController = require('../controllers/courseController');
+const loginRequired = require('../middlewares/loginRequired');
+const roleRequired = require('../middlewares/roleRequired');
+
+
+
 
 // Create Course
-router.post('/', courseController.createCourse);
+router.post('/',  roleRequired('teacher'),courseController.createCourse);
 
 // Get All Courses
 router.get('/', courseController.getAllCourses);
@@ -12,9 +17,9 @@ router.get('/', courseController.getAllCourses);
 router.get('/:id', courseController.getCourseById);
 
 // Update Course
-router.put('/:id', courseController.updateCourse);
+router.put('/:id',  roleRequired('teacher'),courseController.updateCourse);
 
 // Delete Course
-router.delete('/:id', courseController.deleteCourse);
+router.delete('/:id',  roleRequired('teacher'),courseController.deleteCourse);
 
 module.exports = router;
